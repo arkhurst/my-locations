@@ -9,7 +9,7 @@ const MainLayout: React.FC = () => {
   return (
     <>
       {/* pages */}
-      <div className="mb-20 min-h-screen bg-white p-8">
+      <div className="mb-20 min-h-screen bg-white  ">
         <React.Suspense fallback={TopLoader()}>
           {routes.map((route: RouteProp, i: number) => {
             return (
