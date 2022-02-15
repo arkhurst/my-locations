@@ -6,4 +6,4 @@ function MainComponent() {
   );
 }
 
-export { MainComponent };
+export default MainComponent;
