@@ -29,7 +29,7 @@ export function SortControl<T>(props: SortControlProps<T>) {
             id="sort-by"
             name="sort-by"
             onChange={handleSortKeyChange}
-            className="mt-1 block w-full pl-3 pr-10 py-1.5 text-xs text-gray-600 border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-xs rounded-md"
+            className=" block w-full rounded-none border-none bg-gray-100 py-1.5 pl-3 pr-10 text-xs text-gray-500  focus:outline-none focus:ring-gray-50 sm:text-xs"
           >
             {sortOptions.map(renderSortOptions)}
           </select>
@@ -46,7 +46,7 @@ export function SortControl<T>(props: SortControlProps<T>) {
         <>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-500"
+            className="mt-1.5 h-5 w-5 text-gray-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -63,7 +63,7 @@ export function SortControl<T>(props: SortControlProps<T>) {
         <>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-500"
+            className="mt-1.5 h-5 w-5 text-gray-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -90,15 +90,17 @@ export function SortControl<T>(props: SortControlProps<T>) {
 
   return (
     <>
-      <div className="flex flex-row m-4 space-x-3">
-        <div className="flex flex-col items-start">
-          <label className="text-xs font-light text-gray-500">Sort by</label>
+      <div className="mb-4 ml-3 flex flex-row space-x-3 sm:ml-3 lg:ml-0">
+        <div className="flex flex-row items-center border border-gray-100 bg-gray-100 py-1 px-3.5">
+          <label className="text-xs font-medium text-gray-600">Sort by</label>
           {renderSortOptionSelect()}
         </div>
         {sortKey !== "" ? (
           <>
-            <div className="flex flex-col items-start space-y-2">
-              <label className="text-xs font-light text-gray-500">Order</label>
+            <div className="flex flex-row items-center space-x-2 bg-gray-100 py-1 px-3.5">
+              <label className="text-xs font-medium text-gray-600">
+                Order by
+              </label>
               {renderSortDirectionIcon()}
             </div>
           </>

@@ -1,10 +1,29 @@
 import * as React from "react";
-import { MainComponentProp } from "./types";
+import { Category, MainComponentProp } from "./types";
 import { DesktopCard, MobileCard } from "./card";
+import { SortControl } from "../../../components/modules/sort";
+
+const listSortOptions = [
+  { label: "Select", value: "" },
+  { label: "Name", value: "name" },
+];
 
 function MainComponent({ categories }: MainComponentProp) {
+  const [list, setList] = React.useState<Category[]>([]);
+  function handleSortChange(data: Category[]) {
+    setList(data);
+  }
+
+  React.useEffect(() => {
+    setList(categories);
+  }, [categories]);
   return (
     <>
+      <SortControl<Category>
+        data={list}
+        onSortChange={handleSortChange}
+        sortOptions={listSortOptions}
+      />
       {/* categories (only on smallest breakpoint) */}
       <div className="mt-0 sm:hidden">
         <div className="px-4 sm:px-6">
@@ -14,7 +33,7 @@ function MainComponent({ categories }: MainComponentProp) {
         </div>
 
         <ul className="mt-3 divide-y divide-gray-100 border-t border-gray-200">
-          {categories.map((category) => (
+          {list.map((category) => (
             <React.Fragment key={category.id}>
               <MobileCard category={category} />
             </React.Fragment>
@@ -38,7 +57,7 @@ function MainComponent({ categories }: MainComponentProp) {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 bg-white">
-              {categories.map((category) => (
+              {list.map((category) => (
                 <React.Fragment key={category.id}>
                   <DesktopCard category={category} />
                 </React.Fragment>

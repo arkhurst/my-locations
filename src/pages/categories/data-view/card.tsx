@@ -20,8 +20,8 @@ function DesktopCard({ category }: CardComponentProp) {
 
         <td className="whitespace-nowrap px-6 py-3 text-right text-sm font-medium">
           <input
-            id={`person-${category.id}`}
-            name={`person-${category.id}`}
+            id={`category-${category.id}`}
+            name={`category-${category.id}`}
             type="checkbox"
             className="h-4 w-4 cursor-pointer rounded-none border-gray-300 text-gray-600 focus:ring-0"
           />
@@ -50,8 +50,8 @@ function MobileCard({ category }: CardComponentProp) {
             </span>
           </span>
           <input
-            id={`person-${category.id}`}
-            name={`person-${category.id}`}
+            id={`category-${category.id}`}
+            name={`category-${category.id}`}
             type="checkbox"
             className="h-4 w-4 cursor-pointer rounded-none border-gray-300 text-gray-600 focus:ring-0"
           />

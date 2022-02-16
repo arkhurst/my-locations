@@ -34,7 +34,7 @@ function MainComponent() {
         <PageToolBar pages={pages} />
       </div>
 
-      <div className="mx-auto mt-8  w-full   max-w-7xl   ">
+      <div className="mx-auto mt-6  w-full   max-w-7xl   ">
         <DataView categories={categories} />
       </div>
     </>
