@@ -53,6 +53,7 @@ function MainComponent() {
           onRemove={() => {
             setShowRemoveCategory(true);
           }}
+          showActions
         />
       </div>
 

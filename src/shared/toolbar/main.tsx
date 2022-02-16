@@ -15,6 +15,7 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
   onAdd,
   onEdit,
   onRemove,
+  showActions,
 }) => {
   const { pathname } = useLocation();
   return (
@@ -59,61 +60,69 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
             </li>
           ))}
         </ol>
-        <div className="flex flex-row space-x-3">
-          <TooltipWithoutIcon
-            message={"Add"}
-            messageClassName={
-              "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-            }
-          >
-            <button
-              type="button"
-              onClick={onAdd}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
-            >
-              <PlusSmIcon className="h-4 w-4 " />
-            </button>
-          </TooltipWithoutIcon>
-          <TooltipWithoutIcon
-            message={"View"}
-            messageClassName={
-              "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-            }
-          >
-            <button className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
-              <EyeIcon className="h-4 w-4 " />
-            </button>
-          </TooltipWithoutIcon>
-          <TooltipWithoutIcon
-            message={"Edit"}
-            messageClassName={
-              "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-            }
-          >
-            <button
-              type="button"
-              onClick={onEdit}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
-            >
-              <PencilIcon className="h-4 w-4 " />
-            </button>
-          </TooltipWithoutIcon>
-          <TooltipWithoutIcon
-            message={"Delete"}
-            messageClassName={
-              "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-            }
-          >
-            <button
-              type="button"
-              onClick={onRemove}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-400 hover:bg-red-100 hover:text-red-500 focus:outline-none"
-            >
-              <TrashIcon className="h-4 w-4 " />
-            </button>
-          </TooltipWithoutIcon>
-        </div>
+        {showActions ? (
+          <>
+            <div className="flex flex-row space-x-3">
+              <TooltipWithoutIcon
+                message={"Add"}
+                messageClassName={
+                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
+                }
+              >
+                <button
+                  type="button"
+                  onClick={onAdd}
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
+                >
+                  <PlusSmIcon className="h-4 w-4 " />
+                </button>
+              </TooltipWithoutIcon>
+              <TooltipWithoutIcon
+                message={"View"}
+                messageClassName={
+                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
+                }
+              >
+                <button className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
+                  <EyeIcon className="h-4 w-4 " />
+                </button>
+              </TooltipWithoutIcon>
+              <TooltipWithoutIcon
+                message={"Edit"}
+                messageClassName={
+                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
+                }
+              >
+                <button
+                  type="button"
+                  onClick={onEdit}
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
+                >
+                  <PencilIcon className="h-4 w-4 " />
+                </button>
+              </TooltipWithoutIcon>
+              <TooltipWithoutIcon
+                message={"Delete"}
+                messageClassName={
+                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
+                }
+              >
+                <button
+                  type="button"
+                  onClick={onRemove}
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-400 hover:bg-red-100 hover:text-red-500 focus:outline-none"
+                >
+                  <TrashIcon className="h-4 w-4 " />
+                </button>
+              </TooltipWithoutIcon>
+            </div>
+          </>
+        ) : null}
       </div>
     </nav>
   );
+};
+
+PageToolBar.defaultProps = {
+  showActions: false,
 };

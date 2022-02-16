@@ -63,6 +63,7 @@ function MainComponent() {
           onAdd={() => {
             push(ADD_LOCATION);
           }}
+          showActions
           onEdit={() => {}}
           onRemove={() => {}}
         />

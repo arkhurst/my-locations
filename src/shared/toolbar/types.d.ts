@@ -4,7 +4,8 @@ export type BreadCrumbProp = {
 };
 export interface ToolBarComponentProp {
   pages: BreadCrumbProp[];
-  onAdd: () => void;
-  onEdit: () => void;
-  onRemove: () => void;
+  showActions: boolean;
+  onAdd?: () => void;
+  onEdit?: () => void;
+  onRemove?: () => void;
 }
