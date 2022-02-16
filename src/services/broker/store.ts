@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import categoryReducer from "./category-reducer";
+import locationReducer from "./location-reducer";
 
 export const store = configureStore({
   reducer: {
     categories: categoryReducer,
+    locations: locationReducer,
   },
 });
 

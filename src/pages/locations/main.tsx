@@ -18,7 +18,7 @@ const pages: BreadCrumbProp[] = [{ name: "Locations", href: LOCATIONS }];
 
 const locations: Location[] = [
   {
-    id: "1",
+    id: 1,
     name: "Location 1",
     category: "Category 1",
     address: "Address 1",
@@ -28,7 +28,7 @@ const locations: Location[] = [
     },
   },
   {
-    id: "2",
+    id: 2,
     name: "Location 2",
     category: "Category 3",
     address: "Address 2",
@@ -38,7 +38,7 @@ const locations: Location[] = [
     },
   },
   {
-    id: "3",
+    id: 3,
     name: "Location 3",
     category: "Category 3",
     address: "Address 3",
@@ -49,7 +49,7 @@ const locations: Location[] = [
   },
 
   {
-    id: "4",
+    id: 4,
     name: "Location 4",
     category: "Category 4",
     address: "Address 4",
