@@ -1,6 +1,6 @@
 import React from "react";
 import AppNavigator from "./navigation/router-config";
-// import ReduxProvider from "./services/context";
+import ReduxProvider from "./services/context";
 import { Toaster } from "react-hot-toast";
 
 const toasterOptions = {
@@ -35,9 +35,9 @@ function App() {
         reverseOrder={false}
         toastOptions={toasterOptions}
       />
-      {/* <ReduxProvider> */}
-      <AppNavigator />
-      {/* </ReduxProvider> */}
+      <ReduxProvider>
+        <AppNavigator />
+      </ReduxProvider>
     </React.Fragment>
   );
 }

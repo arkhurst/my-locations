@@ -14,20 +14,20 @@ const pages: BreadCrumbProp[] = [{ name: "Categories", href: APP_HOME }];
 
 const categories = [
   {
-    id: "1",
+    id: 1,
     name: "Lorem ipsum dolor sit amet consectetur ",
   },
   {
-    id: "2",
+    id: 2,
     name: "Perferendis pariatur, quaerat",
   },
   {
-    id: "4",
+    id: 4,
     name: "Ipsam perspiciatis doloremque",
   },
 
   {
-    id: "3",
+    id: 3,
     name: "Exercitationem maiores",
   },
 ];

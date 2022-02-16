@@ -8,5 +8,5 @@ export interface MainComponentProp {
 
 export type Category = {
   name: string;
-  id: string;
+  id: number;
 };
