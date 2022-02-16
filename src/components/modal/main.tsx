@@ -21,12 +21,12 @@ const MainComponent: React.FC<IModalProps> = ({
         <Dialog
           as="div"
           static
-          className="fixed z-30 inset-0 overflow-y-auto"
+          className="fixed inset-0  z-40 overflow-y-auto"
           initialFocus={ref}
           open={show}
           onClose={setShow}
         >
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
             <Transition.Child
               as={React.Fragment}
               enter="ease-out duration-300"
@@ -40,7 +40,7 @@ const MainComponent: React.FC<IModalProps> = ({
             </Transition.Child>
 
             <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
+              className="hidden sm:inline-block sm:h-screen sm:align-middle"
               aria-hidden="true"
             >
               &#8203;
@@ -57,7 +57,7 @@ const MainComponent: React.FC<IModalProps> = ({
               <div
                 ref={ref}
                 style={{ width: `${size}vw`, height: `${height}vh` }}
-                className="inline-block align-bottom bg-white rounded-lg  text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle"
+                className="inline-block transform overflow-hidden rounded-none  bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:align-middle"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="modal-headline"

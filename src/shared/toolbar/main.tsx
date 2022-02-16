@@ -10,7 +10,12 @@ import { useLocation } from "react-router-dom";
 import { ToolBarComponentProp } from "./types";
 import { TooltipWithoutIcon } from "../../components/modules/tool-tips";
 
-export const PageToolBar: React.FC<ToolBarComponentProp> = ({ pages }) => {
+export const PageToolBar: React.FC<ToolBarComponentProp> = ({
+  pages,
+  onAdd,
+  onEdit,
+  onRemove,
+}) => {
   const { pathname } = useLocation();
   return (
     <nav
@@ -61,7 +66,11 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({ pages }) => {
               "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
             }
           >
-            <button className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
+            <button
+              type="button"
+              onClick={onAdd}
+              className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
+            >
               <PlusSmIcon className="h-4 w-4 " />
             </button>
           </TooltipWithoutIcon>
@@ -81,7 +90,11 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({ pages }) => {
               "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
             }
           >
-            <button className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
+            <button
+              type="button"
+              onClick={onEdit}
+              className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
+            >
               <PencilIcon className="h-4 w-4 " />
             </button>
           </TooltipWithoutIcon>
@@ -91,7 +104,11 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({ pages }) => {
               "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
             }
           >
-            <button className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-400 hover:bg-red-100 hover:text-red-500 focus:outline-none">
+            <button
+              type="button"
+              onClick={onRemove}
+              className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-400 hover:bg-red-100 hover:text-red-500 focus:outline-none"
+            >
               <TrashIcon className="h-4 w-4 " />
             </button>
           </TooltipWithoutIcon>

@@ -56,7 +56,12 @@ function MainComponent() {
     <>
       <div className="sticky top-0 ">
         <Header title="Manage Locations" />
-        <PageToolBar pages={pages} />
+        <PageToolBar
+          pages={pages}
+          onAdd={() => {}}
+          onEdit={() => {}}
+          onRemove={() => {}}
+        />
       </div>
       <div className="mx-auto mt-6  w-full   max-w-7xl   ">
         <DataView locations={locations} />
