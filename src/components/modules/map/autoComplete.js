@@ -59,7 +59,7 @@ class AutoComplete extends Component {
     return (
       <Wrapper>
         <input
-          className="focus:ring-pink-600  focus:shadow-outline-purple focus:border-pink-600   block w-full rounded-md border border-gray-300 bg-white py-5 font-light shadow-none  focus:outline-none sm:text-sm"
+          className="focus:shadow-outline-gray  block h-12   w-full rounded-none border border-gray-300 bg-white px-3 font-light shadow-none focus:border-gray-600 focus:outline-none  focus:ring-gray-600 sm:text-sm"
           ref={(ref) => {
             this.searchInput = ref;
           }}

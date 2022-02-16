@@ -127,8 +127,8 @@ class MyGoogleMap extends Component {
     return (
       <Wrapper>
         {mapApiLoaded && (
-          <div className=" grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
-            <div className="sm:col-span-3">
+          <div className=" grid grid-cols-1 gap-y-0 gap-x-4 sm:grid-cols-6">
+            <div className="-mt-4 sm:col-span-3 sm:-mt-4 ">
               <AutoComplete
                 map={mapInstance}
                 mapApi={mapApi}
@@ -136,15 +136,15 @@ class MyGoogleMap extends Component {
               />
             </div>
 
-            <div className="mt-0 sm:col-span-3 ">
-              <div className="my-4 w-full rounded-md bg-gray-800 p-3">
-                <div className="mt-0 text-sm font-medium text-white">
-                  <span>{truncateText(this.state.address, 20)}</span>
+            <div className="-mt-4 sm:col-span-3 sm:-mt-4  ">
+              <div className="my-4  h-12 w-full rounded-none bg-gray-200 px-2 py-1">
+                <div className="mt-0 text-sm font-medium text-gray-800">
+                  <span>{truncateText(this.state.address, 40)}</span>
                 </div>
                 <div className="my-0.5 flex flex-row items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-white"
+                    className="h-4 w-4 text-gray-800"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -154,7 +154,7 @@ class MyGoogleMap extends Component {
                       clip-rule="evenodd"
                     />
                   </svg>
-                  <div className="text-xs text-white">
+                  <div className="text-xs text-gray-800">
                     lat: <span>{this.state.lat.toFixed(2)}</span>, long:{" "}
                     <span>{this.state.lng.toFixed(2)}</span>
                   </div>
