@@ -102,7 +102,7 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
                 </button>
               </TooltipWithoutIcon>
               <TooltipWithoutIcon
-                message={"Delete"}
+                message={"Remove"}
                 messageClassName={
                   "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
                 }

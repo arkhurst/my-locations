@@ -57,7 +57,7 @@ function MainComponent({ setShow, show }: AddComponentProp) {
                 <button
                   type="button"
                   onClick={() => setShow(false)}
-                  className="flex h-10 w-32 items-center justify-center rounded-none border border-gray-900 bg-white px-6 py-2 text-xs font-light leading-5 text-gray-900 transition duration-150 ease-in-out hover:bg-white hover:text-gray-800  focus:border-gray-600 focus:outline-none"
+                  className="flex h-10 w-32 items-center justify-center rounded-none border border-gray-300 bg-white px-6 py-2 text-xs font-light leading-5 text-gray-900 transition duration-150 ease-in-out hover:bg-white hover:text-gray-800  focus:border-gray-300 focus:outline-none"
                 >
                   <span className="mx-1">Close</span>
                 </button>

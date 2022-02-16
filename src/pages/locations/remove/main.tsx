@@ -16,7 +16,7 @@ function MainComponent({ setShow, show }: RemoveComponentProp) {
       >
         <div className="py-6">
           <span className={"mt-5 px-6 text-lg font-medium"}>
-            Remove Category
+            Remove Location
           </span>
           <div className="mt-5 grid grid-cols-1 gap-y-4 gap-x-2 px-6 sm:grid-cols-6">
             <div className="sm:col-span-6">

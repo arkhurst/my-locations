@@ -52,10 +52,10 @@ function MainComponent({ locations }: MainComponentProp) {
                 <th className="border-b border-gray-200 bg-white px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                   <span className="lg:pl-2">Address</span>
                 </th>
-                <th className="border-b border-gray-200 bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="border-b border-gray-200 bg-white px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                   Name
                 </th>
-                <th className="hidden border-b border-gray-200 bg-gray-50 px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell">
+                <th className="hidden border-b border-gray-200 bg-white px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell">
                   Category
                 </th>
                 <th className="hidden border-b border-gray-200 bg-white px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell">

@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   ADD_LOCATION,
   EDIT_LOCATION,
@@ -8,8 +9,10 @@ import { PageToolBar } from "../../shared/toolbar";
 import { BreadCrumbProp } from "../../shared/toolbar/types";
 import { Location } from "./data-view/types";
 import { useHistory } from "react-router-dom";
+import { TopLoader } from "../../components/loader";
 import DataView from "./data-view";
 
+const RemoveLocation = React.lazy(() => import("./remove"));
 const pages: BreadCrumbProp[] = [{ name: "Locations", href: LOCATIONS }];
 
 const locations: Location[] = [
@@ -58,6 +61,8 @@ const locations: Location[] = [
 
 function MainComponent() {
   const { push } = useHistory();
+  const [showRemoveLocation, setShowRemoveLocation] =
+    React.useState<boolean>(false);
   return (
     <>
       <div className="sticky top-0 ">
@@ -71,12 +76,20 @@ function MainComponent() {
           onEdit={() => {
             push(EDIT_LOCATION);
           }}
-          onRemove={() => {}}
+          onRemove={() => {
+            setShowRemoveLocation(true);
+          }}
         />
       </div>
       <div className="mx-auto mt-6  w-full   max-w-7xl   ">
         <DataView locations={locations} />
       </div>
+      <React.Suspense fallback={TopLoader()}>
+        <RemoveLocation
+          setShow={setShowRemoveLocation}
+          show={showRemoveLocation}
+        />
+      </React.Suspense>
     </>
   );
 }
