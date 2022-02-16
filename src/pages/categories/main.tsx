@@ -6,16 +6,36 @@ import DataView from "./data-view";
 
 const pages: BreadCrumbProp[] = [{ name: "Categories", href: APP_HOME }];
 
+const categories = [
+  {
+    id: "1",
+    name: "Lorem ipsum dolor sit amet consectetur ",
+  },
+  {
+    id: "2",
+    name: "Perferendis pariatur, quaerat",
+  },
+  {
+    id: "4",
+    name: "Ipsam perspiciatis doloremque",
+  },
+
+  {
+    id: "3",
+    name: "Exercitationem maiores",
+  },
+];
+
 function MainComponent() {
   return (
     <>
       <div className="sticky top-0 ">
-        <Header />
+        <Header title="Manage Categories" />
         <PageToolBar pages={pages} />
       </div>
 
       <div className="mx-auto mt-8  w-full   max-w-7xl   ">
-        <DataView />
+        <DataView categories={categories} />
       </div>
     </>
   );

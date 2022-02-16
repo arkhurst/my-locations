@@ -2,9 +2,10 @@ import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { HeaderComponentProp } from "./types";
 import ProfileImage from "../../assets/male.jpeg";
 
-const Header = () => {
+const Header = ({ title }: HeaderComponentProp) => {
   return (
     <Fragment>
       <Disclosure as="nav" className="bg-gray-900" aria-label="Global">
@@ -15,7 +16,7 @@ const Header = () => {
                 <div className="flex items-center px-2 lg:px-0">
                   <div className="flex flex-shrink-0 items-center">
                     <h1 className="text-2xl font-extrabold text-white">
-                      Manage Categories
+                      {title}
                     </h1>
                   </div>
                 </div>
