@@ -4,6 +4,7 @@ import { PageToolBar } from "../../shared/toolbar";
 import { BreadCrumbProp } from "../../shared/toolbar/types";
 import { Header } from "../../shared/header";
 import { TopLoader } from "../../components/loader";
+import { siteTitle } from "../../components/util";
 import DataView from "./data-view";
 
 const AddCategory = React.lazy(() => import("./add"));
@@ -37,6 +38,10 @@ function MainComponent() {
     React.useState<boolean>(false);
   const [showRemoveCategory, setShowRemoveCategory] =
     React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    document.title = "Categories | " + siteTitle;
+  }, []);
 
   return (
     <>

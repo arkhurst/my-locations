@@ -5,6 +5,7 @@ import { PageToolBar } from "../../shared/toolbar";
 import { BreadCrumbProp } from "../../shared/toolbar/types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AddLocationFormInput } from "./types";
+import { siteTitle } from "../../components/util";
 import Map from "../../components/modules/map";
 
 const pages: BreadCrumbProp[] = [
@@ -23,6 +24,10 @@ function MainComponent() {
   const [longitude, setLogitue] = React.useState<string>("");
   const [latitude, setLatitude] = React.useState<string>("");
   const [address, setAddress] = React.useState<string>("");
+
+  React.useEffect(() => {
+    document.title = "Add Location | " + siteTitle;
+  }, []);
 
   return (
     <>

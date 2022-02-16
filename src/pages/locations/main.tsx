@@ -10,6 +10,7 @@ import { BreadCrumbProp } from "../../shared/toolbar/types";
 import { Location } from "./data-view/types";
 import { useHistory } from "react-router-dom";
 import { TopLoader } from "../../components/loader";
+import { siteTitle } from "../../components/util";
 import DataView from "./data-view";
 
 const RemoveLocation = React.lazy(() => import("./remove"));
@@ -63,6 +64,10 @@ function MainComponent() {
   const { push } = useHistory();
   const [showRemoveLocation, setShowRemoveLocation] =
     React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    document.title = " Locations | " + siteTitle;
+  }, []);
   return (
     <>
       <div className="sticky top-0 ">

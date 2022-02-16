@@ -1,3 +1,6 @@
+import { defaultTo } from "ramda";
+export const siteTitle = defaultTo("My Locations", process.env.REACT_APP_NAME);
+
 export function compareObjectsByKey<T>(key: keyof T, ascending = true) {
   return function innerSort(objectA: T, objectB: T) {
     const sortValue =
