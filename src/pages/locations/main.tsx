@@ -1,8 +1,9 @@
-import { LOCATIONS } from "../../navigation/constants";
+import { ADD_LOCATION, LOCATIONS } from "../../navigation/constants";
 import { Header } from "../../shared/header";
 import { PageToolBar } from "../../shared/toolbar";
 import { BreadCrumbProp } from "../../shared/toolbar/types";
 import { Location } from "./data-view/types";
+import { useHistory } from "react-router-dom";
 import DataView from "./data-view";
 
 const pages: BreadCrumbProp[] = [{ name: "Locations", href: LOCATIONS }];
@@ -52,13 +53,16 @@ const locations: Location[] = [
 ];
 
 function MainComponent() {
+  const { push } = useHistory();
   return (
     <>
       <div className="sticky top-0 ">
         <Header title="Manage Locations" />
         <PageToolBar
           pages={pages}
-          onAdd={() => {}}
+          onAdd={() => {
+            push(ADD_LOCATION);
+          }}
           onEdit={() => {}}
           onRemove={() => {}}
         />
