@@ -1,4 +1,8 @@
-import { ADD_LOCATION, LOCATIONS } from "../../navigation/constants";
+import {
+  ADD_LOCATION,
+  EDIT_LOCATION,
+  LOCATIONS,
+} from "../../navigation/constants";
 import { Header } from "../../shared/header";
 import { PageToolBar } from "../../shared/toolbar";
 import { BreadCrumbProp } from "../../shared/toolbar/types";
@@ -64,7 +68,9 @@ function MainComponent() {
             push(ADD_LOCATION);
           }}
           showActions
-          onEdit={() => {}}
+          onEdit={() => {
+            push(EDIT_LOCATION);
+          }}
           onRemove={() => {}}
         />
       </div>

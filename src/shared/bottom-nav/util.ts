@@ -1,6 +1,11 @@
 import { NavigationProp } from "../../navigation/types";
 import { LocationMarkerIcon, ViewGridIcon } from "@heroicons/react/outline";
-import { ADD_LOCATION, APP_HOME, LOCATIONS } from "../../navigation/constants";
+import {
+  ADD_LOCATION,
+  APP_HOME,
+  EDIT_LOCATION,
+  LOCATIONS,
+} from "../../navigation/constants";
 
 export const navigation: Array<NavigationProp> = [
   {
@@ -11,6 +16,6 @@ export const navigation: Array<NavigationProp> = [
   {
     name: "Locations",
     icon: LocationMarkerIcon,
-    href: [LOCATIONS, ADD_LOCATION],
+    href: [LOCATIONS, ADD_LOCATION, EDIT_LOCATION],
   },
 ];

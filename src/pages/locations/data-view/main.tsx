@@ -5,6 +5,7 @@ import { SortControl } from "../../../components/modules/sort";
 
 const listSortOptions = [
   { label: "Select", value: "" },
+  { label: "Address", value: "address" },
   { label: "Name", value: "name" },
   { label: "Category", value: "category" },
 ];
