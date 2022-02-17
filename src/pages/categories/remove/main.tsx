@@ -26,7 +26,7 @@ function MainComponent({ setShow, show, categories }: RemoveComponentProp) {
                 <div className="sm:col-span-6">
                   <span className="block pb-1 text-xs font-normal leading-5 text-gray-600">
                     Are you sure you want to remove these categories? All
-                    locations related to this category will be permanently
+                    locations related to these categories will be permanently
                     removed forever. This action cannot be undone.
                   </span>
                   <ul className="list-disc space-y-2 px-3">

@@ -65,6 +65,27 @@ function MainComponent() {
   const [showRemoveLocation, setShowRemoveLocation] =
     React.useState<boolean>(false);
 
+  const [selectedLocations, setSelectedLocations] = React.useState<Location[]>(
+    []
+  );
+
+  const unselectLocation = React.useCallback(
+    (locationToUnselect: Location) =>
+      setSelectedLocations(
+        selectedLocations?.filter(
+          (selectedCategory: Location) =>
+            selectedCategory !== locationToUnselect
+        )
+      ),
+    [selectedLocations]
+  );
+
+  const disableViewButton =
+    selectedLocations?.length > 1 || selectedLocations?.length === 0;
+  const disableEditButton =
+    selectedLocations?.length > 1 || selectedLocations.length === 0;
+  const disableRemoveButton = selectedLocations?.length === 0;
+
   React.useEffect(() => {
     document.title = " Locations | " + siteTitle;
   }, []);
@@ -73,6 +94,9 @@ function MainComponent() {
       <div className="sticky top-0 ">
         <Header title="Manage Locations" />
         <PageToolBar
+          disableViewButton={disableViewButton}
+          disableEditButton={disableEditButton}
+          disableRemoveButton={disableRemoveButton}
           pages={pages}
           onAdd={() => {
             push(ADD_LOCATION);
@@ -87,12 +111,18 @@ function MainComponent() {
         />
       </div>
       <div className="mx-auto mt-6  w-full   max-w-7xl   ">
-        <DataView locations={locations} />
+        <DataView
+          locations={locations}
+          selectedLocations={selectedLocations}
+          setSelectedLocations={setSelectedLocations}
+          unselectLocation={unselectLocation}
+        />
       </div>
       <React.Suspense fallback={TopLoader()}>
         <RemoveLocation
           setShow={setShowRemoveLocation}
           show={showRemoveLocation}
+          locations={selectedLocations}
         />
       </React.Suspense>
     </>

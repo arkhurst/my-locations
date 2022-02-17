@@ -44,13 +44,13 @@ function MainComponent() {
   const [showRemoveCategory, setShowRemoveCategory] =
     React.useState<boolean>(false);
 
-  const [selectedCategories, setSelecteCategories] = React.useState<Category[]>(
-    []
-  );
+  const [selectedCategories, setSelectedCategories] = React.useState<
+    Category[]
+  >([]);
 
   const unselectCategory = React.useCallback(
     (categoryToUnselect: Category) =>
-      setSelecteCategories(
+      setSelectedCategories(
         selectedCategories?.filter(
           (selectedCategory: Category) =>
             selectedCategory !== categoryToUnselect
@@ -110,7 +110,7 @@ function MainComponent() {
             <DataView
               categories={categories}
               selectedCategories={selectedCategories}
-              setSelecteCategories={setSelecteCategories}
+              setSelectedCategories={setSelectedCategories}
               unselectCategory={unselectCategory}
             />
           </>

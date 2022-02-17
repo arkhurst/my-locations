@@ -11,7 +11,7 @@ const listSortOptions = [
 function MainComponent({
   categories,
   selectedCategories,
-  setSelecteCategories,
+  setSelectedCategories,
   unselectCategory,
 }: MainComponentProp) {
   const [list, setList] = React.useState<Category[]>([]);
@@ -48,7 +48,7 @@ function MainComponent({
                   category={category}
                   isCategorySelected={isCategorySelected}
                   selectedCategories={selectedCategories}
-                  setSelecteCategories={setSelecteCategories}
+                  setSelectedCategories={setSelectedCategories}
                   unselectCategory={unselectCategory}
                 />
               </React.Fragment>
@@ -84,7 +84,7 @@ function MainComponent({
                       category={category}
                       isCategorySelected={isCategorySelected}
                       selectedCategories={selectedCategories}
-                      setSelecteCategories={setSelecteCategories}
+                      setSelectedCategories={setSelectedCategories}
                       unselectCategory={unselectCategory}
                     />
                   </React.Fragment>

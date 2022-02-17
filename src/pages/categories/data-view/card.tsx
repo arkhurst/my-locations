@@ -6,14 +6,14 @@ function DesktopCard({
   isCategorySelected,
   selectedCategories,
   unselectCategory,
-  setSelecteCategories,
+  setSelectedCategories,
 }: CardComponentProp) {
   return (
     <>
       <tr
         onClick={() => {
           if (isCategorySelected) unselectCategory(category);
-          else setSelecteCategories([...selectedCategories, category]);
+          else setSelectedCategories([...selectedCategories, category]);
         }}
         className="cursor-pointer hover:bg-gray-50"
       >
@@ -37,7 +37,7 @@ function DesktopCard({
             type="checkbox"
             onChange={() => {
               if (isCategorySelected) unselectCategory(category);
-              else setSelecteCategories([...selectedCategories, category]);
+              else setSelectedCategories([...selectedCategories, category]);
             }}
             checked={isCategorySelected?.id === category.id ? true : false}
             className="h-4 w-4 cursor-pointer rounded-none border-gray-300 text-gray-600 focus:ring-0"
@@ -53,14 +53,14 @@ function MobileCard({
   isCategorySelected,
   selectedCategories,
   unselectCategory,
-  setSelecteCategories,
+  setSelectedCategories,
 }: CardComponentProp) {
   return (
     <>
       <li
         onClick={() => {
           if (isCategorySelected) unselectCategory(category);
-          else setSelecteCategories([...selectedCategories, category]);
+          else setSelectedCategories([...selectedCategories, category]);
         }}
         className="group flex cursor-pointer items-center justify-between px-4 py-4 text-sm hover:bg-gray-50 sm:px-6"
       >
@@ -83,7 +83,7 @@ function MobileCard({
           type="checkbox"
           onChange={() => {
             if (isCategorySelected) unselectCategory(category);
-            else setSelecteCategories([...selectedCategories, category]);
+            else setSelectedCategories([...selectedCategories, category]);
           }}
           checked={isCategorySelected?.id === category.id ? true : false}
           className="h-4 w-4 cursor-pointer rounded-none border-gray-300 text-gray-600 focus:ring-0"

@@ -1,8 +1,10 @@
+import * as React from "react";
 import { RemoveComponentProp } from "./types";
 import { BasicModal } from "../../../components/modal";
 import { useMediaQuery } from "react-responsive";
+import { Location } from "../data-view/types";
 
-function MainComponent({ setShow, show }: RemoveComponentProp) {
+function MainComponent({ setShow, show, locations }: RemoveComponentProp) {
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
@@ -16,17 +18,43 @@ function MainComponent({ setShow, show }: RemoveComponentProp) {
       >
         <div className="py-6">
           <span className={"mt-5 px-6 text-lg font-medium"}>
-            Remove Location
+            {locations?.length > 1 ? "Remove Locations" : "Remove Location"}
           </span>
           <div className="mt-5 grid grid-cols-1 gap-y-4 gap-x-2 px-6 sm:grid-cols-6">
-            <div className="sm:col-span-6">
-              <span className="block pb-1 text-xs font-normal leading-5 text-gray-600">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Blanditiis perferendis eligendi quaerat ea eum voluptatem non
-                quos, inventore, sunt ipsa, nobis ut libero beatae praesentium
-                omnis eaque nemo nesciunt dicta.
-              </span>
-            </div>
+            {locations?.length > 1 ? (
+              <>
+                <div className="sm:col-span-6">
+                  <span className="block pb-1 text-xs font-normal leading-5 text-gray-600">
+                    Are you sure you want to remove these locations? All
+                    categories referenced to these locations will be permanently
+                    removed forever. This action cannot be undone.
+                  </span>
+                  <ul className="list-disc space-y-2 px-3">
+                    {locations?.map((location: Location) => (
+                      <React.Fragment key={location.id}>
+                        <li className="text-xs font-bold text-gray-700">
+                          {location?.address}
+                        </li>
+                      </React.Fragment>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="sm:col-span-6">
+                  <span className="block pb-1 text-xs font-normal leading-5 text-gray-600">
+                    Are you sure you want to remove location{" "}
+                    <span className="font-bold text-gray-800">
+                      {locations[0]?.address}
+                    </span>{" "}
+                    from your record? All categories referenced to this location
+                    will be permanently removed forever. This action cannot be
+                    undone.
+                  </span>
+                </div>
+              </>
+            )}
           </div>
           <div className="mt-5 flex justify-end border-t border-gray-200 px-6 pt-4">
             <span className="mr-2 inline-flex rounded-none shadow-sm ">

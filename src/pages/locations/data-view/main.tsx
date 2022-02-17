@@ -10,7 +10,12 @@ const listSortOptions = [
   { label: "Category", value: "category" },
 ];
 
-function MainComponent({ locations }: MainComponentProp) {
+function MainComponent({
+  locations,
+  selectedLocations,
+  setSelectedLocations,
+  unselectLocation,
+}: MainComponentProp) {
   const [list, setList] = React.useState<Location[]>([]);
   function handleSortChange(data: Location[]) {
     setList(data);
@@ -35,11 +40,22 @@ function MainComponent({ locations }: MainComponentProp) {
         </div>
 
         <ul className="mt-3 divide-y divide-gray-100 border-t border-gray-200">
-          {list.map((location) => (
-            <React.Fragment key={location.id}>
-              <MobileCard location={location} />
-            </React.Fragment>
-          ))}
+          {list.map((location) => {
+            let isLocationSelected = selectedLocations.find(
+              (selectedLocation: Location) => selectedLocation === location
+            );
+            return (
+              <React.Fragment key={location.id}>
+                <MobileCard
+                  location={location}
+                  isLocationSelected={isLocationSelected}
+                  selectedLocations={selectedLocations}
+                  setSelectedLocations={setSelectedLocations}
+                  unselectLocation={unselectLocation}
+                />
+              </React.Fragment>
+            );
+          })}
         </ul>
       </div>
 
@@ -64,11 +80,22 @@ function MainComponent({ locations }: MainComponentProp) {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 bg-white">
-              {list.map((location) => (
-                <React.Fragment key={location.id}>
-                  <DesktopCard location={location} />
-                </React.Fragment>
-              ))}
+              {list.map((location) => {
+                let isLocationSelected = selectedLocations.find(
+                  (selectedLocation: Location) => selectedLocation === location
+                );
+                return (
+                  <React.Fragment key={location.id}>
+                    <DesktopCard
+                      location={location}
+                      isLocationSelected={isLocationSelected}
+                      selectedLocations={selectedLocations}
+                      setSelectedLocations={setSelectedLocations}
+                      unselectLocation={unselectLocation}
+                    />
+                  </React.Fragment>
+                );
+              })}
             </tbody>
           </table>
         </div>
