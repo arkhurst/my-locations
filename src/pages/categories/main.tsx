@@ -5,6 +5,7 @@ import { BreadCrumbProp } from "../../shared/toolbar/types";
 import { Header } from "../../shared/header";
 import { TopLoader } from "../../components/loader";
 import { siteTitle } from "../../components/util";
+import { Category } from "./data-view/types";
 import DataView from "./data-view";
 
 const AddCategory = React.lazy(() => import("./add"));
@@ -43,6 +44,21 @@ function MainComponent() {
   const [showRemoveCategory, setShowRemoveCategory] =
     React.useState<boolean>(false);
 
+  const [selectedCategories, setSelecteCategories] = React.useState<Category[]>(
+    []
+  );
+
+  const unselectCategory = React.useCallback(
+    (categoryToUnselect: Category) =>
+      setSelecteCategories(
+        selectedCategories?.filter(
+          (selectedCategory: Category) =>
+            selectedCategory !== categoryToUnselect
+        )
+      ),
+    [selectedCategories]
+  );
+
   React.useEffect(() => {
     document.title = "Categories | " + siteTitle;
   }, []);
@@ -70,7 +86,12 @@ function MainComponent() {
       </div>
 
       <div className="mx-auto mt-6  w-full   max-w-7xl   ">
-        <DataView categories={categories} />
+        <DataView
+          categories={categories}
+          selectedCategories={selectedCategories}
+          setSelecteCategories={setSelecteCategories}
+          unselectCategory={unselectCategory}
+        />
       </div>
       <React.Suspense fallback={TopLoader()}>
         <AddCategory show={showAddCategory} setShow={setShowAddCategory} />

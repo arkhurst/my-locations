@@ -8,7 +8,12 @@ const listSortOptions = [
   { label: "Name", value: "name" },
 ];
 
-function MainComponent({ categories }: MainComponentProp) {
+function MainComponent({
+  categories,
+  selectedCategories,
+  setSelecteCategories,
+  unselectCategory,
+}: MainComponentProp) {
   const [list, setList] = React.useState<Category[]>([]);
   function handleSortChange(data: Category[]) {
     setList(data);
@@ -33,11 +38,22 @@ function MainComponent({ categories }: MainComponentProp) {
         </div>
 
         <ul className="mt-3 divide-y divide-gray-100 border-t border-gray-200">
-          {list.map((category) => (
-            <React.Fragment key={category.id}>
-              <MobileCard category={category} />
-            </React.Fragment>
-          ))}
+          {list.map((category) => {
+            let isCategorySelected = selectedCategories.find(
+              (selectedCategory: Category) => selectedCategory === category
+            );
+            return (
+              <React.Fragment key={category.id}>
+                <MobileCard
+                  category={category}
+                  isCategorySelected={isCategorySelected}
+                  selectedCategories={selectedCategories}
+                  setSelecteCategories={setSelecteCategories}
+                  unselectCategory={unselectCategory}
+                />
+              </React.Fragment>
+            );
+          })}
         </ul>
       </div>
 
@@ -57,11 +73,23 @@ function MainComponent({ categories }: MainComponentProp) {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 bg-white">
-              {list.map((category) => (
-                <React.Fragment key={category.id}>
-                  <DesktopCard category={category} />
-                </React.Fragment>
-              ))}
+              {list.map((category) => {
+                let isCategorySelected = selectedCategories.find(
+                  (selectedCategory: Category) => selectedCategory === category
+                );
+
+                return (
+                  <React.Fragment key={category.id}>
+                    <DesktopCard
+                      category={category}
+                      isCategorySelected={isCategorySelected}
+                      selectedCategories={selectedCategories}
+                      setSelecteCategories={setSelecteCategories}
+                      unselectCategory={unselectCategory}
+                    />
+                  </React.Fragment>
+                );
+              })}
             </tbody>
           </table>
         </div>
