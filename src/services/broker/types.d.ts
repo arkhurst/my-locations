@@ -20,3 +20,28 @@ export type RemoveCategoryPayLoad = {
     id: number;
   };
 };
+
+export type AddLocationPayLoad = {
+  payload: {
+    id: number;
+    name: string;
+    category: string;
+    coordinates: Coordinates;
+    address: string;
+  };
+};
+
+export type EditLocationPayLoad = {
+  payload: {
+    id: number;
+    name: string;
+    category: string;
+    coordinates: Coordinates;
+    address: string;
+  };
+};
+export type RemoveLocationPayLoad = {
+  payload: {
+    id: number;
+  };
+};

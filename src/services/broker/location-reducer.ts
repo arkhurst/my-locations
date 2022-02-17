@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LocationData } from "../../data/locations";
-import { LocationToEditProp } from "./types";
+import {
+  LocationToEditProp,
+  AddLocationPayLoad,
+  EditLocationPayLoad,
+  RemoveLocationPayLoad,
+} from "./types";
 
 const locationToEdit: LocationToEditProp = {};
 
@@ -11,10 +16,10 @@ export const locationSlice = createSlice({
     selectedValue: locationToEdit,
   },
   reducers: {
-    addLocation: (state, action) => {
+    addLocation: (state, action: AddLocationPayLoad) => {
       state.value.push(action.payload);
     },
-    removeLocation: (state, action) => {
+    removeLocation: (state, action: RemoveLocationPayLoad) => {
       state.value = state.value.filter(
         (location) => location.id !== action.payload.id
       );
@@ -24,7 +29,7 @@ export const locationSlice = createSlice({
         (location) => location.id === action.payload.id
       );
     },
-    editLocation: (state, action) => {
+    editLocation: (state, action: EditLocationPayLoad) => {
       state.value.forEach((location) => {
         if (location.id === action.payload.id) {
           location.name = action.payload.name;

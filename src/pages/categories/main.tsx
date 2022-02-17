@@ -18,6 +18,7 @@ const ViewCategory = React.lazy(() => import("./view"));
 const pages: BreadCrumbProp[] = [{ name: "Categories", href: APP_HOME }];
 
 function MainComponent() {
+  const categoryList = useAppSelector((state) => state.categories.value);
   const [showViewCategory, setShowViewCategory] =
     React.useState<boolean>(false);
   const [showAddCategory, setShowAddCategory] = React.useState<boolean>(false);
@@ -29,8 +30,6 @@ function MainComponent() {
   const [selectedCategories, setSelectedCategories] = React.useState<
     Category[]
   >([]);
-
-  const categoryList = useAppSelector((state) => state.categories.value);
 
   const unselectCategory = React.useCallback(
     (categoryToUnselect: Category) =>
