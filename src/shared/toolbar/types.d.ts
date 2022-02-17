@@ -8,4 +8,5 @@ export interface ToolBarComponentProp {
   onAdd?: () => void;
   onEdit?: () => void;
   onRemove?: () => void;
+  onView?: () => void;
 }

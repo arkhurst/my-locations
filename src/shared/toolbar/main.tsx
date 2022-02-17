@@ -15,6 +15,7 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
   onAdd,
   onEdit,
   onRemove,
+  onView,
   showActions,
 }) => {
   const { pathname } = useLocation();
@@ -83,7 +84,11 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
                   "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
                 }
               >
-                <button className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
+                <button
+                  type="button"
+                  onClick={onView}
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
+                >
                   <EyeIcon className="h-4 w-4 " />
                 </button>
               </TooltipWithoutIcon>

@@ -10,6 +10,8 @@ import DataView from "./data-view";
 const AddCategory = React.lazy(() => import("./add"));
 const EditCategory = React.lazy(() => import("./edit"));
 const RemoveCategory = React.lazy(() => import("./remove"));
+const ViewCategory = React.lazy(() => import("./view"));
+
 const pages: BreadCrumbProp[] = [{ name: "Categories", href: APP_HOME }];
 
 const categories = [
@@ -33,6 +35,8 @@ const categories = [
 ];
 
 function MainComponent() {
+  const [showViewCategory, setShowViewCategory] =
+    React.useState<boolean>(false);
   const [showAddCategory, setShowAddCategory] = React.useState<boolean>(false);
   const [showEditCategory, setShowEditCategory] =
     React.useState<boolean>(false);
@@ -58,6 +62,9 @@ function MainComponent() {
           onRemove={() => {
             setShowRemoveCategory(true);
           }}
+          onView={() => {
+            setShowViewCategory(true);
+          }}
           showActions
         />
       </div>
@@ -67,6 +74,7 @@ function MainComponent() {
       </div>
       <React.Suspense fallback={TopLoader()}>
         <AddCategory show={showAddCategory} setShow={setShowAddCategory} />
+        <ViewCategory show={showViewCategory} setShow={setShowViewCategory} />
         <EditCategory show={showEditCategory} setShow={setShowEditCategory} />
         <RemoveCategory
           show={showRemoveCategory}
