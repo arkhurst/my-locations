@@ -11,6 +11,7 @@ import { Location } from "./data-view/types";
 import { useHistory } from "react-router-dom";
 import { TopLoader } from "../../components/loader";
 import { siteTitle } from "../../components/util";
+import { EmptyState } from "../../components/alerts";
 import DataView from "./data-view";
 
 const RemoveLocation = React.lazy(() => import("./remove"));
@@ -110,13 +111,27 @@ function MainComponent() {
           }}
         />
       </div>
-      <div className="mx-auto mt-6  w-full   max-w-7xl   ">
-        <DataView
-          locations={locations}
-          selectedLocations={selectedLocations}
-          setSelectedLocations={setSelectedLocations}
-          unselectLocation={unselectLocation}
-        />
+      <div className="mx-auto mt-6 w-full max-w-7xl">
+        {locations.length === 0 ? (
+          <>
+            <EmptyState
+              model="locations"
+              canAdd
+              onAdd={() => {
+                push(ADD_LOCATION);
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <DataView
+              locations={locations}
+              selectedLocations={selectedLocations}
+              setSelectedLocations={setSelectedLocations}
+              unselectLocation={unselectLocation}
+            />
+          </>
+        )}
       </div>
       <React.Suspense fallback={TopLoader()}>
         <RemoveLocation

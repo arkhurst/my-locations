@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CategoriesData } from "../../data/categories";
-import { CategoryToEditProp } from "./types";
+import {
+  AddCategoryPayLoad,
+  CategoryToEditProp,
+  EditCategoryPayLoad,
+  RemoveCategoryPayLoad,
+} from "./types";
 
 const categoryToEdit: CategoryToEditProp = {};
 
@@ -8,10 +13,10 @@ export const categorySlice = createSlice({
   name: "categories",
   initialState: { value: CategoriesData, selectedValue: categoryToEdit },
   reducers: {
-    addCategory: (state, action) => {
+    addCategory: (state, action: AddCategoryPayLoad) => {
       state.value.push(action.payload);
     },
-    removeCategory: (state, action) => {
+    removeCategory: (state, action: RemoveCategoryPayLoad) => {
       state.value = state.value.filter(
         (category) => category.id !== action.payload.id
       );
@@ -22,7 +27,7 @@ export const categorySlice = createSlice({
         (category) => category.id === action.payload.id
       );
     },
-    editCategory: (state, action) => {
+    editCategory: (state, action: EditCategoryPayLoad) => {
       state.value.forEach((category) => {
         if (category.id === action.payload.id) {
           category.name = action.payload.name;

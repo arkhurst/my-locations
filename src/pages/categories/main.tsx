@@ -7,6 +7,7 @@ import { TopLoader } from "../../components/loader";
 import { siteTitle } from "../../components/util";
 import { Category } from "./data-view/types";
 import { EmptyState } from "../../components/alerts";
+import { useAppSelector } from "../../services/broker/broker";
 import DataView from "./data-view";
 
 const AddCategory = React.lazy(() => import("./add"));
@@ -15,25 +16,6 @@ const RemoveCategory = React.lazy(() => import("./remove"));
 const ViewCategory = React.lazy(() => import("./view"));
 
 const pages: BreadCrumbProp[] = [{ name: "Categories", href: APP_HOME }];
-
-const categories: Category[] = [
-  {
-    id: 1,
-    name: "Lorem ipsum dolor sit amet consectetur ",
-  },
-  {
-    id: 2,
-    name: "Perferendis pariatur, quaerat",
-  },
-  {
-    id: 4,
-    name: "Ipsam perspiciatis doloremque",
-  },
-  {
-    id: 3,
-    name: "Exercitationem maiores",
-  },
-];
 
 function MainComponent() {
   const [showViewCategory, setShowViewCategory] =
@@ -48,12 +30,14 @@ function MainComponent() {
     Category[]
   >([]);
 
+  const categoryList = useAppSelector((state) => state.categories.value);
+
   const unselectCategory = React.useCallback(
     (categoryToUnselect: Category) =>
       setSelectedCategories(
         selectedCategories?.filter(
           (selectedCategory: Category) =>
-            selectedCategory !== categoryToUnselect
+            selectedCategory?.id !== categoryToUnselect?.id
         )
       ),
     [selectedCategories]
@@ -95,7 +79,7 @@ function MainComponent() {
       </div>
 
       <div className="mx-auto mt-6  w-full   max-w-7xl   ">
-        {categories?.length === 0 ? (
+        {categoryList?.length === 0 ? (
           <>
             <EmptyState
               model="categories"
@@ -108,7 +92,7 @@ function MainComponent() {
         ) : (
           <>
             <DataView
-              categories={categories}
+              categories={categoryList}
               selectedCategories={selectedCategories}
               setSelectedCategories={setSelectedCategories}
               unselectCategory={unselectCategory}

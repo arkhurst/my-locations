@@ -40,7 +40,8 @@ function MainComponent({
         <ul className="mt-3 divide-y divide-gray-100 border-t border-gray-200">
           {list.map((category) => {
             let isCategorySelected = selectedCategories.find(
-              (selectedCategory: Category) => selectedCategory === category
+              (selectedCategory: Category) =>
+                selectedCategory?.id === category?.id
             );
             return (
               <React.Fragment key={category.id}>
@@ -75,7 +76,8 @@ function MainComponent({
             <tbody className="divide-y divide-gray-100 bg-white">
               {list.map((category) => {
                 let isCategorySelected = selectedCategories.find(
-                  (selectedCategory: Category) => selectedCategory === category
+                  (selectedCategory: Category) =>
+                    selectedCategory?.id === category?.id
                 );
 
                 return (

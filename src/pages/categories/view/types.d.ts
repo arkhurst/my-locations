@@ -1,4 +1,5 @@
 import React from "react";
+import { Category } from "../data-view/types";
 
 export interface MainComponentProp {
   show: boolean;

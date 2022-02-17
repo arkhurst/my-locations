@@ -2,8 +2,16 @@ import { AddCategoryFormInput, AddComponentProp } from "./types";
 import { BasicModal } from "../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../services/broker/broker";
+import { addCategory } from "../../../services/broker/category-reducer";
+import toast from "react-hot-toast";
 
 function MainComponent({ setShow, show }: AddComponentProp) {
+  const dispatch = useAppDispatch();
+  const categoryList = useAppSelector((state) => state.categories.value);
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
@@ -12,9 +20,29 @@ function MainComponent({ setShow, show }: AddComponentProp) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<AddCategoryFormInput>();
 
-  const onSubmit: SubmitHandler<AddCategoryFormInput> = (data, e) => {};
+  const onSubmit: SubmitHandler<AddCategoryFormInput> = (data) => {
+    try {
+      dispatch(
+        addCategory({
+          id:
+            categoryList.length > 0
+              ? categoryList[categoryList?.length - 1].id + 1
+              : 1,
+          name: data.name,
+        })
+      );
+      toast.success("Category added successfully 🚀");
+      reset({
+        name: "",
+      });
+      setShow(false);
+    } catch (error) {
+      toast.error("Oops, something occured");
+    }
+  };
   return (
     <>
       <BasicModal

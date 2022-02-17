@@ -3,8 +3,12 @@ import { EditCategoryFormInput, EditComponentProp } from "./types";
 import { BasicModal } from "../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch } from "../../../services/broker/broker";
+import { editCategory } from "../../../services/broker/category-reducer";
+import toast from "react-hot-toast";
 
 function MainComponent({ setShow, show, category }: EditComponentProp) {
+  const dispatch = useAppDispatch();
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
@@ -20,11 +24,24 @@ function MainComponent({ setShow, show, category }: EditComponentProp) {
     if (category) {
       reset({
         name: category[0]?.name,
+        id: category[0]?.id,
       });
     }
   }, [category, reset]);
 
-  const onSubmit: SubmitHandler<EditCategoryFormInput> = (data, e) => {};
+  const onSubmit: SubmitHandler<EditCategoryFormInput> = (data) => {
+    try {
+      dispatch(
+        editCategory({
+          ...data,
+        })
+      );
+      toast.success("Category updated successfully 🚀");
+      setShow(false);
+    } catch (error) {
+      toast.error("Oops, something occured");
+    }
+  };
 
   return (
     <>
