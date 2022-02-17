@@ -9,4 +9,7 @@ export interface ToolBarComponentProp {
   onEdit?: () => void;
   onRemove?: () => void;
   onView?: () => void;
+  disableViewButton?: boolean;
+  disableEditButton?: boolean;
+  disableRemoveButton?: boolean;
 }

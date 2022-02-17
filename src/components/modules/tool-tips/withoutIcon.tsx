@@ -6,6 +6,7 @@ export const TooltipWithoutIcon = ({
   message,
   children,
   messageClassName,
+  disabled,
 }: ToolTipWithoutIconProp) => {
   const [showTooltip, setShowTooltip] = React.useState(false);
 
@@ -13,7 +14,10 @@ export const TooltipWithoutIcon = ({
     <React.Fragment>
       <div className={"relative w-full"}>
         <div
-          onMouseEnter={() => setShowTooltip(true)}
+          onMouseEnter={() => {
+            if (disabled) return;
+            else setShowTooltip(true);
+          }}
           onMouseLeave={() => setShowTooltip(false)}
         >
           {children}
@@ -29,7 +33,7 @@ export const TooltipWithoutIcon = ({
           leaveTo="opacity-0"
         >
           <div className={messageClassName}>
-            <span className={"text-white text-xs "}>{message || ""}</span>
+            <span className={"text-xs text-white "}>{message || ""}</span>
           </div>
         </Transition>
       </div>

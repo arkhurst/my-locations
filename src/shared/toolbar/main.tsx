@@ -1,14 +1,8 @@
 import * as React from "react";
-import {
-  EyeIcon,
-  HomeIcon,
-  PencilIcon,
-  PlusSmIcon,
-  TrashIcon,
-} from "@heroicons/react/outline";
+import { HomeIcon } from "@heroicons/react/outline";
 import { useLocation } from "react-router-dom";
 import { ToolBarComponentProp } from "./types";
-import { TooltipWithoutIcon } from "../../components/modules/tool-tips";
+import { ActionButton } from "../../components/modules/action-buttons";
 
 export const PageToolBar: React.FC<ToolBarComponentProp> = ({
   pages,
@@ -17,6 +11,9 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
   onRemove,
   onView,
   showActions,
+  disableViewButton,
+  disableRemoveButton,
+  disableEditButton,
 }) => {
   const { pathname } = useLocation();
   return (
@@ -63,63 +60,31 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
         </ol>
         {showActions ? (
           <>
-            <div className="flex flex-row space-x-3">
-              <TooltipWithoutIcon
-                message={"Add"}
-                messageClassName={
-                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-                }
-              >
-                <button
-                  type="button"
-                  onClick={onAdd}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
-                >
-                  <PlusSmIcon className="h-4 w-4 " />
-                </button>
-              </TooltipWithoutIcon>
-              <TooltipWithoutIcon
-                message={"View"}
-                messageClassName={
-                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-                }
-              >
-                <button
-                  type="button"
-                  onClick={onView}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
-                >
-                  <EyeIcon className="h-4 w-4 " />
-                </button>
-              </TooltipWithoutIcon>
-              <TooltipWithoutIcon
-                message={"Edit"}
-                messageClassName={
-                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-                }
-              >
-                <button
-                  type="button"
-                  onClick={onEdit}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none"
-                >
-                  <PencilIcon className="h-4 w-4 " />
-                </button>
-              </TooltipWithoutIcon>
-              <TooltipWithoutIcon
-                message={"Remove"}
-                messageClassName={
-                  "absolute w-14  bg-gray-600 flex justify-center px-1 py-1 rounded-none -bottom-8 -right-3"
-                }
-              >
-                <button
-                  type="button"
-                  onClick={onRemove}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-red-50 text-red-400 hover:bg-red-100 hover:text-red-500 focus:outline-none"
-                >
-                  <TrashIcon className="h-4 w-4 " />
-                </button>
-              </TooltipWithoutIcon>
+            <div className="flex flex-row space-x-4">
+              <ActionButton
+                tooltipLabel="Add"
+                icon="add"
+                disabled={false}
+                onActionClicked={onAdd}
+              />
+              <ActionButton
+                tooltipLabel="View"
+                icon="view"
+                disabled={disableViewButton}
+                onActionClicked={onView}
+              />
+              <ActionButton
+                tooltipLabel="Edit"
+                icon="edit"
+                disabled={disableEditButton}
+                onActionClicked={onEdit}
+              />
+              <ActionButton
+                tooltipLabel="Remove"
+                icon="remove"
+                disabled={disableRemoveButton}
+                onActionClicked={onRemove}
+              />
             </div>
           </>
         ) : null}
@@ -130,4 +95,7 @@ export const PageToolBar: React.FC<ToolBarComponentProp> = ({
 
 PageToolBar.defaultProps = {
   showActions: false,
+  disableViewButton: true,
+  disableRemoveButton: true,
+  disableEditButton: true,
 };

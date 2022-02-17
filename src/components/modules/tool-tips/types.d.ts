@@ -8,4 +8,5 @@ export interface ToolTipWithoutIconProp {
   message: string;
   children: ReactNode;
   messageClassName: string;
+  disabled?: boolean;
 }

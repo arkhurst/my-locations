@@ -59,6 +59,12 @@ function MainComponent() {
     [selectedCategories]
   );
 
+  const disableViewButton =
+    selectedCategories?.length > 1 || selectedCategories?.length === 0;
+  const disableEditButton =
+    selectedCategories?.length > 1 || selectedCategories.length === 0;
+  const disableRemoveButton = selectedCategories?.length === 0;
+
   React.useEffect(() => {
     document.title = "Categories | " + siteTitle;
   }, []);
@@ -68,6 +74,9 @@ function MainComponent() {
       <div className="sticky top-0 ">
         <Header title="Manage Categories" />
         <PageToolBar
+          disableViewButton={disableViewButton}
+          disableEditButton={disableEditButton}
+          disableRemoveButton={disableRemoveButton}
           pages={pages}
           onAdd={() => {
             setShowAddCategory(true);
