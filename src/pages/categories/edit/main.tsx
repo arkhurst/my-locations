@@ -1,9 +1,10 @@
+import * as React from "react";
 import { EditCategoryFormInput, EditComponentProp } from "./types";
 import { BasicModal } from "../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-function MainComponent({ setShow, show }: EditComponentProp) {
+function MainComponent({ setShow, show, category }: EditComponentProp) {
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
@@ -12,9 +13,19 @@ function MainComponent({ setShow, show }: EditComponentProp) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<EditCategoryFormInput>();
 
+  React.useEffect(() => {
+    if (category) {
+      reset({
+        name: category[0]?.name,
+      });
+    }
+  }, [category, reset]);
+
   const onSubmit: SubmitHandler<EditCategoryFormInput> = (data, e) => {};
+
   return (
     <>
       <BasicModal

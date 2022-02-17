@@ -6,6 +6,7 @@ import { Header } from "../../shared/header";
 import { TopLoader } from "../../components/loader";
 import { siteTitle } from "../../components/util";
 import { Category } from "./data-view/types";
+import { EmptyState } from "../../components/alerts";
 import DataView from "./data-view";
 
 const AddCategory = React.lazy(() => import("./add"));
@@ -15,7 +16,7 @@ const ViewCategory = React.lazy(() => import("./view"));
 
 const pages: BreadCrumbProp[] = [{ name: "Categories", href: APP_HOME }];
 
-const categories = [
+const categories: Category[] = [
   {
     id: 1,
     name: "Lorem ipsum dolor sit amet consectetur ",
@@ -28,7 +29,6 @@ const categories = [
     id: 4,
     name: "Ipsam perspiciatis doloremque",
   },
-
   {
     id: 3,
     name: "Exercitationem maiores",
@@ -95,20 +95,43 @@ function MainComponent() {
       </div>
 
       <div className="mx-auto mt-6  w-full   max-w-7xl   ">
-        <DataView
-          categories={categories}
-          selectedCategories={selectedCategories}
-          setSelecteCategories={setSelecteCategories}
-          unselectCategory={unselectCategory}
-        />
+        {categories?.length === 0 ? (
+          <>
+            <EmptyState
+              model="categories"
+              canAdd
+              onAdd={() => {
+                setShowAddCategory(true);
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <DataView
+              categories={categories}
+              selectedCategories={selectedCategories}
+              setSelecteCategories={setSelecteCategories}
+              unselectCategory={unselectCategory}
+            />
+          </>
+        )}
       </div>
       <React.Suspense fallback={TopLoader()}>
         <AddCategory show={showAddCategory} setShow={setShowAddCategory} />
-        <ViewCategory show={showViewCategory} setShow={setShowViewCategory} />
-        <EditCategory show={showEditCategory} setShow={setShowEditCategory} />
+        <ViewCategory
+          show={showViewCategory}
+          setShow={setShowViewCategory}
+          category={selectedCategories}
+        />
+        <EditCategory
+          show={showEditCategory}
+          setShow={setShowEditCategory}
+          category={selectedCategories}
+        />
         <RemoveCategory
           show={showRemoveCategory}
           setShow={setShowRemoveCategory}
+          categories={selectedCategories}
         />
       </React.Suspense>
     </>

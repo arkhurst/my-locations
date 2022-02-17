@@ -7,7 +7,7 @@ function EmptyState({
   onAdd,
 }: EmptyStateComponentProp) {
   return (
-    <div className="text-center py-20">
+    <div className="mx-auto w-full max-w-sm   py-20 text-center">
       <svg
         className="mx-auto h-12 w-12 text-gray-400"
         fill="none"
@@ -24,14 +24,14 @@ function EmptyState({
         />
       </svg>
       <h3 className="mt-2 text-sm font-medium text-gray-900">No {model}</h3>
-      <p className="mt-1 text-sm text-gray-500 px-10 sm:px-10">{message}</p>
+      <p className="mt-1 px-10 text-sm text-gray-500 sm:px-10">{message}</p>
       {canAdd && (
         <>
           <div className="mt-6">
             <button
               type="button"
               onClick={onAdd}
-              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-0 focus:ring-offset-0"
+              className=" inline-flex items-center rounded-none border-none bg-gray-800 px-6 py-2.5 text-sm font-medium text-white shadow-none hover:bg-gray-700 focus:outline-none focus:ring-0 focus:ring-offset-0"
             >
               Add new
             </button>
@@ -44,7 +44,7 @@ function EmptyState({
 
 EmptyState.defaultProps = {
   canAdd: false,
-  message: "You don't have any record to show. Get started by adding new.",
+  message: "You don't have any record to show.",
 };
 
 export { EmptyState };

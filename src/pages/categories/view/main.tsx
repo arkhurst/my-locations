@@ -20,7 +20,7 @@ const locations = [
   },
 ];
 
-function MainComponent({ setShow, show }: MainComponentProp) {
+function MainComponent({ setShow, show, category }: MainComponentProp) {
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
@@ -33,19 +33,19 @@ function MainComponent({ setShow, show }: MainComponentProp) {
       >
         <div className="py-6">
           <span className={"mt-5 px-6 text-lg font-medium"}>
-            Locations in this Category
+            Locations in {category[0]?.name}
           </span>
 
           <div
             style={{
               maxHeight: "50vh",
             }}
-            className="mt-4 inline-block min-w-full overflow-y-auto border-none align-middle shadow-none"
+            className="mt-2 inline-block min-w-full overflow-y-auto border-none align-middle shadow-none"
           >
             <table className="min-w-full">
               <thead>
                 <tr className="">
-                  <th className="border-none bg-white px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="border-none bg-white px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                     <span className="lg:pl-2">Locations - Addresses</span>
                   </th>
                 </tr>
