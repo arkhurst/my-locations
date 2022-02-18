@@ -1,4 +1,3 @@
-export type EditLocationFormInput = {
-  name: string;
-  category: string;
+export type UrlParams = {
+  id: string;
 };

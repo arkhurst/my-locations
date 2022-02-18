@@ -26,17 +26,17 @@ function MainComponent({ setShow, show, categories }: RemoveComponentProp) {
   function handleRemoveCategories(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     try {
-      categoriesToRemove.forEach((cat) => {
+      categoriesToRemove.forEach((category: Category) => {
         dispatch(
           removeCategory({
-            id: cat?.id,
+            id: category?.id,
           })
         );
       });
       toast.success("Removed successfully 🚀");
       setShow(false);
     } catch (error) {
-      toast.error("Oops, something occured");
+      toast.error("Oops, something happened");
     }
   }
   return (

@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  ADD_LOCATION,
-  EDIT_LOCATION,
-  LOCATIONS,
-} from "../../navigation/constants";
+import { ADD_LOCATION, LOCATIONS } from "../../navigation/constants";
 import { Header } from "../../shared/header";
 import { PageToolBar } from "../../shared/toolbar";
 import { BreadCrumbProp } from "../../shared/toolbar/types";
@@ -63,7 +59,7 @@ function MainComponent() {
           }}
           showActions
           onEdit={() => {
-            push(EDIT_LOCATION);
+            push(`/location/edit/${selectedLocations[0]?.id}`);
           }}
           onRemove={() => {
             setShowRemoveLocation(true);

@@ -5,6 +5,7 @@ import {
   AddLocationPayLoad,
   EditLocationPayLoad,
   RemoveLocationPayLoad,
+  GetSingleLocationPayLoad,
 } from "./types";
 
 const locationToEdit: LocationToEditProp = {};

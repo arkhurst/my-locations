@@ -1,3 +1,5 @@
+import { Coordinates } from "../../pages/locations/data-view/types";
+
 export type CategoryToEditProp = any;
 export type LocationToEditProp = any;
 
@@ -41,6 +43,12 @@ export type EditLocationPayLoad = {
   };
 };
 export type RemoveLocationPayLoad = {
+  payload: {
+    id: number;
+  };
+};
+
+export type GetSingleLocationPayLoad = {
   payload: {
     id: number;
   };

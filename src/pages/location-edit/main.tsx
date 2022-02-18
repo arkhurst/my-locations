@@ -3,9 +3,13 @@ import { EDIT_LOCATION, LOCATIONS } from "../../navigation/constants";
 import { Header } from "../../shared/header";
 import { PageToolBar } from "../../shared/toolbar";
 import { BreadCrumbProp } from "../../shared/toolbar/types";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { EditLocationFormInput } from "./types";
 import { siteTitle } from "../../components/util";
+import { useAppDispatch, useAppSelector } from "../../services/broker/broker";
+import { useHistory, useParams } from "react-router-dom";
+import { classNames } from "../../components/className";
+import { Category } from "../categories/data-view/types";
+import { UrlParams } from "./types.d";
+import { getSingleLocation } from "../../services/broker/location-reducer";
 import Map from "../../components/modules/map";
 
 const pages: BreadCrumbProp[] = [
@@ -14,20 +18,48 @@ const pages: BreadCrumbProp[] = [
 ];
 
 function MainComponent() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<EditLocationFormInput>();
+  const dispatch = useAppDispatch();
+  const { push } = useHistory();
+  const locationId: UrlParams = useParams();
 
-  const onSubmit: SubmitHandler<EditLocationFormInput> = (data, e) => {};
-  const [longitude, setLogitue] = React.useState<string>("");
+  const [longitude, setLongitude] = React.useState<string>("");
   const [latitude, setLatitude] = React.useState<string>("");
   const [address, setAddress] = React.useState<string>("");
+  const [name, setName] = React.useState<string>("");
+  const [category, setCategory] = React.useState<string>("");
+
+  const selectedLocation = useAppSelector(
+    (state) => state.locations.selectedValue
+  );
+  const categoryList = useAppSelector((state) => state.categories.value);
 
   React.useEffect(() => {
     document.title = "Edit Location | " + siteTitle;
   }, []);
+
+  React.useEffect(() => {
+    if (locationId?.id) {
+      dispatch(
+        getSingleLocation({
+          id: +locationId.id,
+        })
+      );
+    }
+  }, [dispatch, locationId.id]);
+
+  React.useEffect(() => {
+    if (selectedLocation) {
+      setAddress(selectedLocation.address);
+      setCategory(selectedLocation.category);
+      setName(selectedLocation?.name);
+    }
+  }, [selectedLocation]);
+
+  const onSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  };
+
+  const disableButton = name?.trim() === "" || category?.trim() === "";
 
   return (
     <>
@@ -44,7 +76,7 @@ function MainComponent() {
               }}
             >
               <Map
-                setLng={setLogitue}
+                setLng={setLongitude}
                 setLat={setLatitude}
                 setAddress={setAddress}
               />
@@ -56,10 +88,7 @@ function MainComponent() {
             }}
             className="col-span-5 mt-36 border border-gray-200 sm:col-span-5 sm:mt-36 lg:col-span-2 lg:mt-0"
           >
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex h-full  flex-col justify-between"
-            >
+            <form className="flex h-full  flex-col justify-between">
               <div className="mt-5 grid grid-cols-1 gap-y-4 gap-x-2 px-6 sm:grid-cols-6">
                 <div className="sm:col-span-6">
                   <span className={"text-base font-medium"}>
@@ -76,16 +105,14 @@ function MainComponent() {
                   <div className="mt-1 rounded-none shadow-none">
                     <input
                       type="text"
-                      className={`${
-                        errors.name
-                          ? "focus:border-red-500 focus:ring-red-500"
-                          : "focus:border-gray-900 focus:ring-gray-900"
-                      } block w-full rounded-none border border-gray-300 bg-white py-2.5 px-2 font-light shadow-none focus:outline-none focus:ring-0 sm:text-sm `}
+                      value={name}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setName(e.target.value)
+                      }
+                      className={
+                        "block w-full rounded-none border border-gray-300 bg-white py-2.5 px-2 font-light shadow-none focus:border-gray-900 focus:outline-none focus:ring-0 focus:ring-gray-900 sm:text-sm"
+                      }
                       placeholder="Eg. My favourite location"
-                      {...register("name", {
-                        required: true,
-                        maxLength: 30,
-                      })}
                     />
                   </div>
                 </div>
@@ -99,19 +126,48 @@ function MainComponent() {
                   <div className="mt-1 rounded-none shadow-none">
                     <select
                       id="category"
-                      {...register("category", {
-                        required: true,
-                      })}
+                      value={category}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                        setCategory(e.target.value)
+                      }
                       className="block w-full rounded-none border border-gray-300 bg-white py-3 pl-3 pr-10 text-xs text-gray-500  focus:border-gray-600 focus:outline-none focus:ring-gray-50 sm:text-xs"
                     >
                       <option>Please select</option>
+
+                      {categoryList?.length === 0 ? (
+                        <React.Fragment>
+                          <option>
+                            No categories found. Please create some categories
+                          </option>
+                        </React.Fragment>
+                      ) : (
+                        <React.Fragment>
+                          {categoryList?.map((category: Category) => (
+                            <React.Fragment key={category.id}>
+                              <option value={category.name}>
+                                {category.name}
+                              </option>
+                            </React.Fragment>
+                          ))}
+                        </React.Fragment>
+                      )}
                     </select>
                   </div>
                 </div>
               </div>
               <div className="mt-0 flex w-full  p-6 ">
                 <span className="inline-flex w-full rounded-none shadow-sm ">
-                  <button className="focus:shadow-outline-gray a border-transparent flex h-10 w-full flex-row items-center justify-center rounded-none border  bg-gray-900 px-4 py-2 text-xs font-light  leading-5  text-white transition duration-150  ease-in-out hover:bg-gray-800 focus:border-gray-600 focus:outline-none">
+                  <button
+                    type="button"
+                    onClick={onSubmit}
+                    disabled={disableButton}
+                    className={classNames(
+                      disableButton
+                        ? "cursor-not-allowed opacity-50"
+                        : "hover:bg-gray-800 focus:border-gray-600",
+                      "focus:shadow-outline-gray a flex h-10 w-full flex-row items-center justify-center rounded-none border border-none  bg-gray-900 px-4 py-2 text-xs font-light  leading-5  text-white transition duration-150  ease-in-out  focus:outline-none"
+                    )}
+                  >
                     <span className="mx-0">Submit</span>
                   </button>
                 </span>
