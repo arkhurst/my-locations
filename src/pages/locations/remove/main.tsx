@@ -3,12 +3,42 @@ import { RemoveComponentProp } from "./types";
 import { BasicModal } from "../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { Location } from "../data-view/types";
+import { useAppDispatch } from "../../../services/broker/broker";
+import { removeLocation } from "../../../services/broker/location-reducer";
+import toast from "react-hot-toast";
 
 function MainComponent({ setShow, show, locations }: RemoveComponentProp) {
+  const dispatch = useAppDispatch();
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
 
+  const [locationsToRemove, setLocationsToRemove] = React.useState<Location[]>(
+    []
+  );
+
+  React.useEffect(() => {
+    if (locations) {
+      setLocationsToRemove(locations);
+    }
+  }, [locations]);
+
+  function handleRemoveLocations(e: React.FormEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    try {
+      locationsToRemove.forEach((location: Location) => {
+        dispatch(
+          removeLocation({
+            id: location?.id,
+          })
+        );
+      });
+      toast.success("Removed successfully 🚀");
+      setShow(false);
+    } catch (error) {
+      toast.error("Oops, something happened");
+    }
+  }
   return (
     <>
       <BasicModal
@@ -67,7 +97,11 @@ function MainComponent({ setShow, show, locations }: RemoveComponentProp) {
               </button>
             </span>
             <span className="inline-flex rounded-none shadow-sm ">
-              <button className="focus:shadow-outline-gray a border-transparent flex h-10 w-32 flex-row items-center justify-center rounded-none border  bg-red-500 px-4 py-2 text-xs font-light  leading-5  text-white transition duration-150  ease-in-out hover:bg-red-600 focus:border-red-600 focus:outline-none">
+              <button
+                type="button"
+                onClick={handleRemoveLocations}
+                className="focus:shadow-outline-gray a border-transparent flex h-10 w-32 flex-row items-center justify-center rounded-none border  bg-red-500 px-4 py-2 text-xs font-light  leading-5  text-white transition duration-150  ease-in-out hover:bg-red-600 focus:border-red-600 focus:outline-none"
+              >
                 <span className="mx-0">Remove</span>
               </button>
             </span>
