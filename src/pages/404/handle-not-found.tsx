@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { APP_HOME } from "../../navigation/constants";
+import { CATEGORIES } from "../../navigation/constants";
 
 export default function NotFound() {
   return (
     <div className="bg-white  px-4 py-16 sm:px-6 sm:py-36 md:grid md:place-items-center lg:px-8">
       <div className="mx-auto max-w-max">
         <main className="sm:flex">
-          <p className="text-4xl font-extrabold text-green-600 sm:text-5xl">
+          <p className="text-4xl font-extrabold text-gray-600 sm:text-5xl">
             404
           </p>
           <div className="sm:ml-6">
@@ -20,8 +20,8 @@ export default function NotFound() {
             </div>
             <div className="sm:border-transparent mt-10 flex space-x-3 sm:border-l sm:pl-6">
               <Link
-                to={APP_HOME}
-                className="border-transparent inline-flex items-center rounded-md border bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                to={CATEGORIES}
+                className="border-transparent inline-flex items-center rounded-md border bg-gray-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
               >
                 Go back home
               </Link>

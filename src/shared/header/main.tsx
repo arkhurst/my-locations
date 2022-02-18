@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
-import { SearchIcon } from "@heroicons/react/solid";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { HeaderComponentProp } from "./types";
 import ProfileImage from "../../assets/male.jpeg";
@@ -43,7 +42,6 @@ const Header = ({ title }: HeaderComponentProp) => {
             </div>
 
             <Disclosure.Panel className="lg:hidden">
-              {/* <div className="space-y-1 px-2 pt-2 pb-3">sdf</div> */}
               <div className="border-t border-gray-900 pt-4 pb-3">
                 <div className="flex items-center px-4">
                   <div className="flex-shrink-0">
