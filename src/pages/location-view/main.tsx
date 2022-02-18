@@ -75,7 +75,7 @@ function MainComponent() {
             style={{
               height: "58vh",
             }}
-            className="col-span-5 mt-36 border border-gray-200 sm:col-span-5 sm:mt-36 lg:col-span-2 lg:mt-0"
+            className="col-span-5 mt-8 border border-gray-200 sm:col-span-5 sm:mt-8 lg:col-span-2 lg:mt-0"
           >
             <dl className="space-y-8 p-4 sm:space-y-4 sm:p-6">
               <div>
@@ -99,8 +99,8 @@ function MainComponent() {
                   Coordinates
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                  {selectedLocation.coordinates.latitude} ,{" "}
-                  {selectedLocation.coordinates.longitude}
+                  {selectedLocation?.coordinates?.latitude} ,{" "}
+                  {selectedLocation?.coordinates?.longitude}
                 </dd>
               </div>
               <div>

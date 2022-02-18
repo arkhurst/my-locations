@@ -5,6 +5,7 @@ import {
   APP_HOME,
   EDIT_LOCATION,
   LOCATIONS,
+  VIEW_LOCATION,
 } from "../../navigation/constants";
 
 export const navigation: Array<NavigationProp> = [
@@ -16,6 +17,6 @@ export const navigation: Array<NavigationProp> = [
   {
     name: "Locations",
     icon: LocationMarkerIcon,
-    href: [LOCATIONS, ADD_LOCATION, EDIT_LOCATION],
+    href: [LOCATIONS, ADD_LOCATION, EDIT_LOCATION, VIEW_LOCATION],
   },
 ];
