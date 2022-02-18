@@ -4,26 +4,36 @@ import { BasicModal } from "../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { MainComponentProp } from "./types";
 import { LocationMarkerIcon } from "@heroicons/react/outline";
-
-const locations = [
-  {
-    name: "something nice here",
-    id: 1,
-  },
-  {
-    name: "we going to have fun",
-    id: 2,
-  },
-  {
-    name: "let go get this",
-    id: 3,
-  },
-];
+import { useAppSelector } from "../../../services/broker/broker";
+import { Location } from "../../locations/data-view/types";
+import { EmptyState } from "../../../components/alerts";
 
 function MainComponent({ setShow, show, category }: MainComponentProp) {
+  const locationList = useAppSelector((state) => state.locations.value);
+
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
+
+  const [categoryName, setCategoryName] = React.useState<string>("");
+  const [locations, setLocations] = React.useState<Location[] | undefined>([]);
+
+  const getLocations = React.useCallback(
+    (category: string) =>
+      setLocations(
+        locationList?.filter(
+          (listItem: Location) => listItem?.category === category
+        )
+      ),
+    [locationList]
+  );
+
+  React.useEffect(() => {
+    if (category[0]?.name) {
+      setCategoryName(category[0]?.name);
+      getLocations(category[0]?.name);
+    }
+  }, [category, getLocations, setLocations]);
   return (
     <>
       <BasicModal
@@ -33,7 +43,7 @@ function MainComponent({ setShow, show, category }: MainComponentProp) {
       >
         <div className="py-6">
           <span className={"mt-5 px-6 text-lg font-medium"}>
-            Locations in {category[0]?.name}
+            Locations in ({categoryName}) category
           </span>
 
           <div
@@ -42,31 +52,39 @@ function MainComponent({ setShow, show, category }: MainComponentProp) {
             }}
             className="mt-2 inline-block min-w-full overflow-y-auto border-none align-middle shadow-none"
           >
-            <table className="min-w-full">
-              <thead>
-                <tr className="">
-                  <th className="border-none bg-white px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    <span className="lg:pl-2">Locations - Addresses</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className=" bg-white">
-                {locations.map((location) => (
-                  <React.Fragment key={location.id}>
-                    <tr>
-                      <td className="w-full max-w-0   whitespace-nowrap px-6 py-3 text-xs font-medium text-gray-900 ">
-                        <div className="flex items-center space-x-3 lg:pl-2">
-                          <LocationMarkerIcon className="h-3 w-3 text-green-500" />
-                          <span className="font-normal text-gray-500">
-                            {location.name}
-                          </span>
-                        </div>
-                      </td>
+            {locations?.length === 0 ? (
+              <>
+                <EmptyState model="locations" onAdd={() => {}} />
+              </>
+            ) : (
+              <>
+                <table className="min-w-full">
+                  <thead>
+                    <tr className="">
+                      <th className="border-none bg-white px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                        <span className="lg:pl-2">Locations - Addresses</span>
+                      </th>
                     </tr>
-                  </React.Fragment>
-                ))}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody className=" bg-white">
+                    {locations?.map((location) => (
+                      <React.Fragment key={location.id}>
+                        <tr>
+                          <td className="w-full max-w-0   whitespace-nowrap px-6 py-3 text-xs font-medium text-gray-900 ">
+                            <div className="flex items-center space-x-3 lg:pl-2">
+                              <LocationMarkerIcon className="h-3 w-3 text-green-500" />
+                              <span className="font-normal text-gray-500">
+                                {location.name}
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </React.Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            )}
           </div>
           <div className="mt-5 flex justify-end border-t border-gray-200 px-6 pt-4">
             <span className="mr-2 inline-flex rounded-none shadow-sm ">

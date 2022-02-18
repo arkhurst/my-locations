@@ -44,7 +44,7 @@ function EmptyState({
 
 EmptyState.defaultProps = {
   canAdd: false,
-  message: "You don't have any record to show.",
+  message: "We don't have any record to show.",
 };
 
 export { EmptyState };
