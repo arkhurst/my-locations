@@ -6,7 +6,7 @@ import styled from "styled-components";
 import AutoComplete from "./autoComplete";
 import Marker from "./marker";
 
-const Wrapper = styled.main`
+export const Wrapper = styled.main`
   width: 100%;
   height: 100%;
 `;
@@ -163,9 +163,6 @@ class MyGoogleMap extends Component {
                     <span>{this.state.lng.toFixed(2)}</span>
                   </div>
                 </div>
-                {/* <div className="text-xs text-white">
-                  Zoom: <span>{this.state.zoom}</span>
-                </div> */}
               </div>
             </div>
           </div>
