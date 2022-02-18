@@ -64,6 +64,9 @@ function MainComponent() {
           onRemove={() => {
             setShowRemoveLocation(true);
           }}
+          onView={() => {
+            push(`/location/view/${selectedLocations[0]?.id}`);
+          }}
         />
       </div>
       <div className="mx-auto mt-6 w-full max-w-7xl">

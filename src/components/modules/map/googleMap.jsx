@@ -6,7 +6,7 @@ import styled from "styled-components";
 import AutoComplete from "./autoComplete";
 import Marker from "./marker";
 
-export const Wrapper = styled.main`
+const Wrapper = styled.main`
   width: 100%;
   height: 100%;
 `;

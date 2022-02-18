@@ -1,6 +1,7 @@
 export const APP_HOME = "/";
 export const CATEGORIES = "/";
 export const LOCATIONS = "/locations";
+export const VIEW_LOCATION = "/location/view/:id";
 export const ADD_LOCATION = "/location/add";
 export const EDIT_LOCATION = "/location/edit/:id";
 

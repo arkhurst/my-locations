@@ -45,7 +45,7 @@ function MainComponent() {
     if (locationId?.id) {
       dispatch(
         getSingleLocation({
-          id: +locationId.id,
+          id: locationId.id,
         })
       );
     }
