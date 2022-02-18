@@ -7,6 +7,7 @@ import {
   useAppSelector,
 } from "../../../services/broker/broker";
 import { addCategory } from "../../../services/broker/category-reducer";
+import { v4 } from "uuid";
 import toast from "react-hot-toast";
 
 function MainComponent({ setShow, show }: AddComponentProp) {
@@ -27,10 +28,7 @@ function MainComponent({ setShow, show }: AddComponentProp) {
     try {
       dispatch(
         addCategory({
-          id:
-            categoryList.length > 0
-              ? categoryList[categoryList?.length - 1].id + 1
-              : 1,
+          id: v4(),
           name: data.name,
         })
       );

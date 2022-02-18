@@ -17,5 +17,5 @@ export interface MainComponentProp {
 
 export type Category = {
   name: string;
-  id: number;
+  id: string;
 };

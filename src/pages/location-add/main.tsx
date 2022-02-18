@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../services/broker/broker";
 import { Category } from "../categories/data-view/types";
 import { addLocation } from "../../services/broker/location-reducer";
 import { useHistory } from "react-router-dom";
+import { v4 } from "uuid";
 import Map from "../../components/modules/map";
 import toast from "react-hot-toast";
 
@@ -32,16 +33,13 @@ function MainComponent() {
   }, []);
 
   const categoryList = useAppSelector((state) => state.categories.value);
-  const locationList = useAppSelector((state) => state.locations.value);
+
   const onSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       dispatch(
         addLocation({
-          id:
-            locationList.length > 0
-              ? locationList[locationList?.length - 1].id + 1
-              : 1,
+          id: v4(),
           name: name,
           address: address,
           coordinates: {

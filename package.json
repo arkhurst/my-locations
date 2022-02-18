@@ -30,6 +30,7 @@
     "react-topbar-progress-indicator": "^4.1.0",
     "styled-components": "^5.3.3",
     "typescript": "^4.4.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -60,6 +61,7 @@
     "@types/ramda": "^0.27.64",
     "@types/react-redux": "^7.1.22",
     "@types/react-router-dom": "^5.3.3",
+    "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",

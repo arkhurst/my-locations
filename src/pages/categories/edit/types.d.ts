@@ -9,5 +9,5 @@ export interface EditComponentProp {
 
 export type EditCategoryFormInput = {
   name: string;
-  id: number;
+  id: string;
 };

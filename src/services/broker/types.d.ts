@@ -5,27 +5,27 @@ export type LocationToEditProp = any;
 
 export type AddCategoryPayLoad = {
   payload: {
-    id: number;
+    id: string;
     name: string;
   };
 };
 
 export type EditCategoryPayLoad = {
   payload: {
-    id: number;
+    id: string;
     name: string;
   };
 };
 
 export type RemoveCategoryPayLoad = {
   payload: {
-    id: number;
+    id: string;
   };
 };
 
 export type AddLocationPayLoad = {
   payload: {
-    id: number;
+    id: string;
     name: string;
     category: string;
     coordinates: Coordinates;
@@ -35,7 +35,7 @@ export type AddLocationPayLoad = {
 
 export type EditLocationPayLoad = {
   payload: {
-    id: number;
+    id: string;
     name: string;
     category: string;
     coordinates: Coordinates;
@@ -44,7 +44,7 @@ export type EditLocationPayLoad = {
 };
 export type RemoveLocationPayLoad = {
   payload: {
-    id: number;
+    id: string;
   };
 };
 

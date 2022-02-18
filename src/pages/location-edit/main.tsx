@@ -66,7 +66,7 @@ function MainComponent() {
     try {
       dispatch(
         editLocation({
-          id: +locationId.id,
+          id: locationId.id,
           name: name,
           address: address,
           coordinates: {

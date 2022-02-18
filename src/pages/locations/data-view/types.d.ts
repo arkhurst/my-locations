@@ -15,7 +15,7 @@ export interface MainComponentProp {
 
 export type Location = {
   name: string;
-  id: number;
+  id: string;
   address: string;
   coordinates: Coordinates;
   category: string;
