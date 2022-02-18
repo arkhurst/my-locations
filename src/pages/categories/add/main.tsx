@@ -2,17 +2,13 @@ import { AddCategoryFormInput, AddComponentProp } from "./types";
 import { BasicModal } from "../../../components/modal";
 import { useMediaQuery } from "react-responsive";
 import { SubmitHandler, useForm } from "react-hook-form";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../services/broker/broker";
+import { useAppDispatch } from "../../../services/broker/broker";
 import { addCategory } from "../../../services/broker/category-reducer";
 import { v4 } from "uuid";
 import toast from "react-hot-toast";
 
 function MainComponent({ setShow, show }: AddComponentProp) {
   const dispatch = useAppDispatch();
-  const categoryList = useAppSelector((state) => state.categories.value);
   const isTabletOrMobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 480px)",
   });
