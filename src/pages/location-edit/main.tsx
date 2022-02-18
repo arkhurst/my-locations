@@ -9,8 +9,12 @@ import { useHistory, useParams } from "react-router-dom";
 import { classNames } from "../../components/className";
 import { Category } from "../categories/data-view/types";
 import { UrlParams } from "./types.d";
-import { getSingleLocation } from "../../services/broker/location-reducer";
+import {
+  editLocation,
+  getSingleLocation,
+} from "../../services/broker/location-reducer";
 import Map from "../../components/modules/map";
+import toast from "react-hot-toast";
 
 const pages: BreadCrumbProp[] = [
   { name: "Locations", href: LOCATIONS },
@@ -49,14 +53,34 @@ function MainComponent() {
 
   React.useEffect(() => {
     if (selectedLocation) {
-      setAddress(selectedLocation.address);
       setCategory(selectedLocation.category);
       setName(selectedLocation?.name);
+    } else {
+      setCategory("");
+      setName("");
     }
   }, [selectedLocation]);
 
   const onSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    try {
+      dispatch(
+        editLocation({
+          id: +locationId.id,
+          name: name,
+          address: address,
+          coordinates: {
+            latitude: Number(latitude),
+            longitude: Number(longitude),
+          },
+          category: category,
+        })
+      );
+      toast.success("Location updated successfully 🚀");
+      push(LOCATIONS);
+    } catch (error) {
+      toast.error("Oops, something occured");
+    }
   };
 
   const disableButton = name?.trim() === "" || category?.trim() === "";

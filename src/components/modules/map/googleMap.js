@@ -1,5 +1,5 @@
 // MyGoogleMaps.js
-import React, { Component } from "react";
+import { Component } from "react";
 import { truncateText } from "../../util";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
@@ -26,9 +26,13 @@ class MyGoogleMap extends Component {
     lng: null,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.setCurrentLocation();
   }
+
+  // UNSAFE_componentWillMount() {
+
+  // }
 
   onMarkerInteraction = (childKey, childProps, mouse) => {
     this.setState({
